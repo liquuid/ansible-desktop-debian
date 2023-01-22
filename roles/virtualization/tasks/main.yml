@@ -1,12 +1,7 @@
 ---
-
 - name: Virtualization | Install lists packages
   apt:
     name:
-      - gnome-boxes
-      - vagrant
-      - podman
-      - buildah
       - docker
       - docker-compose
       - binutils
@@ -15,6 +10,16 @@
       - cmake
       - golang-go
       - patch
+      - gnome-boxes
+      - virt-manager
+      - cockpit
+      - cockpit-machines
+      - cockpit-bridge
+      - cockpit-networkmanager
+      - cockpit-packagekit
+      - cockpit-system
+      - cockpit-podman
+      - cockpit-storaged
     state: latest
 
 - name: Enable docker
@@ -23,3 +28,5 @@
     state: started
     enabled: yes
 
+- name: Install distrobox
+  shell:  curl -s https://raw.githubusercontent.com/89luca89/distrobox/main/install | sudo sh

@@ -2,7 +2,6 @@
 - name: Install X11 libs
   apt:
     name:
-      - build-essential
       - libx11-dev
       - libxcursor-dev 
       - libxrandr-dev
@@ -20,6 +19,13 @@
       - libglib2.0-dev
       - libtool
       - fonts-firacode
+      - fritzing
+      - openscad
+      - prusa-slicer
+      - cura
+      - sigrok-cli
+      - pulseview
+      - cargo
     state: present
 
 - name: Install "Snap"
@@ -28,39 +34,12 @@
 - name: Enable "Snap"
   service: name=snapd state=started enabled=yes
 
-  #- name: Create "snap" symlink
-  #file:
-  #  src:  /var/lib/snapd/snap
-  #  dest: /snap
-  #  owner: root
-  #  state: link
-
-
-- name: Install "phpstorm" with option --classic
-  snap:
-    name: phpstorm
-    classic: yes
-
-- name: Install "goland" with option --classic
-  snap:
-    name: goland
-    classic: yes
-
-
-- name: Install "clion" with option --classic
-  snap:
-    name: clion
-    classic: yes
-
-- name: Install "webstorm" with option --classic
-  snap:
-    name: webstorm
-    classic: yes
-
-- name: Install "pycharm-professional" with option --classic
-  snap:
-    name: pycharm-professional
-    classic: yes
+#- name: Create "snap" symlink
+#  file:
+#    src:  /var/lib/snapd/snap
+#    dest: /snap
+#    owner: root
+#    state: link
 
 - name: Install "vscode" with option --classic
   snap:
@@ -70,7 +49,6 @@
 - name: Install "insomnia" 
   snap:
     name: insomnia
-    state: absent
 
 - name: Install "postbird" 
   snap:
@@ -101,3 +79,7 @@
   flatpak:
     name: io.dbeaver.DBeaverCommunity
     state: present
+
+- name: Install "zeal"
+  apt:
+    name: zeal

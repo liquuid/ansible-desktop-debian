@@ -1,4 +1,22 @@
 ---
+- name: Set timezone America/Sao_Paulo
+  timezone:
+    name: America/Sao_Paulo
+
+- name: Add contrib non-free software
+  copy:
+    src: sources.list
+    dest: /etc/apt/sources.list
+
+- name: Add backports
+  copy:
+    src: bullseye-backports.list
+    dest: /etc/apt/sources.list.d/bullseye-backports.list
+
+- name: zfs pin
+  copy:
+    src: 90_zfs
+    dest: /etc/apt/preferences.d/90_zfs
 
 - name: Package | Install lists packages
   apt:
@@ -47,9 +65,32 @@
       - poppler-utils
       - imagemagick
       - xclip
-      - openssh-server  
+      - xsel
+      - syncthing
+      - syncthing-gtk
+      - filezilla
+      - openvpn
+      - btrfs-compsize
 
-    state: present
+      - gnome-shell-extension-appindicator
+      - gnome-shell-extension-desktop-icons
+      - gnome-shell-extension-dashtodock
+      #- gnome-shell-extension-system-monitor-applet
+      - gnome-shell-extension-top-icons-plus
+      #- gnome-shell-extension-vertical-workspaces
+      #- gnome-shell-extension-auto-move-windows
+      #- gnome-shell-extension-panel-favorites
+      #- gnome-shell-extension-pop-shell
+      #- gnome-shell-extension-systemMonitor
+      #- gnome-shell-extension-sound-output-device-chooser
+      - dpkg-dev
+      - linux-headers-generic
+      - linux-image-generic
+      - zfs-dkms
+      - zfsutils-linux
+
+    state: latest
+    update_cache: yes
 
 - name: Setup SSHD
   service: name=ssh state=started enabled=yes

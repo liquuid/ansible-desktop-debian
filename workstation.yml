@@ -3,16 +3,17 @@
 - hosts: local
   vars_files:
     - group_vars/all.yml
+  remote_user: root 
 
   roles:
 
     - common       # List of essential packages
+    - dev
     - design       # Design pack
     #- latex        # Latex and ide texmaker
-    - composer
     - nodejs
     - browsers
-    - dev
+
     - multimedia
     - virtualization
     #- users
